@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+}
+
+group 'github.olgakos'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+//техническое: для сокращения лишнего из лога сообщений о запуске теста
+def selenideVersion = "6.2.1",
+    junitVersion = "5.8.2",
+    slf4jVersion = "1.7.32"
+
+
+dependencies {
+    testImplementation ('org.junit.jupiter:junit-jupiter:5.8.2', //latest junit
+                        'com.codeborne:selenide:6.3.3' //latest selenide
+                        )
+
+
+    testRuntimeOnly ('org.junit.jupiter:junit-jupiter-engine:5.8.2',
+    "org.slf4j:slf4j-simple:1.7.32" //техническое: для сокращения лишнего из лога сообщений о запуске теста
+    )
+
+}
+
+/*
+//fix: если не отображается кириллица
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'}
+*/
+
+
+test {
+    useJUnitPlatform()
+}
