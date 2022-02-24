@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Configuration.browserSize;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-@DisplayName("Класс c параметризованными тестами сайта Юсуповский дворец")
+@DisplayName("Класс c параметризованными тестами для сайта Юсуповский дворец")
 public class yusupovPalaceParameterizedTests {
     @BeforeEach
     void preconditionBrowser() {
