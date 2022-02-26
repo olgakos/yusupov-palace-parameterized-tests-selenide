@@ -75,17 +75,16 @@ public class yusupovPalaceSimpleTests {
         $("#fio").setValue("Example Name").pressEnter();
         $("#phone").setValue("Example Tel TEXT!").pressEnter();
         $("#type").setValue("цель мероприятия").pressEnter();
-        $("#guests").setValue("2").pressEnter(); // int=2
+        $("#guests").setValue("два").pressEnter(); // int=2
         $("[type=submit]").click(); // кнопка отправить
 
-        //Ожидаемый результат:
-        //предупреждающее ОКНО с текстом "Заполните это поле / Пожалуйста, введите число"
         //todo:
-        //Фактический результат: варианты1-4 не работают. Врианты 5-7 ошибочно проупскают неверный текст
-        $x("//text[contains(.,'Заполните это поле')]").should(Condition.exist); //1. не раб.
+        //Ожидаемый результат: предупреждающее ОКНО с текстом "Заполните это поле / Пожалуйста, введите число"
+        //Фактический результат: НЕ РАБОТАЕТ ничего из вараинтов:
+        //$x("//text[contains(.,'Заполните это поле')]").should(Condition.exist); //1. не раб.
         //$(withText("Заполните это поле")).should(Condition.exist); //2. не раб.
         //$(withText("Пожалуйста, введите число")).should(Condition.exist); //3. не раб.
-        //$(withText("Пож1луйста, введите число")).should(Condition.exist); //4. не раб.
+        //$(withText("Заполните это поле.")).should(Condition.exist); //4. не раб.
         //$(byText("Пож1луйста, введите число")).isDisplayed(); //тест зеленый, а должен быть красный
         //$x("//body[contains(.,'Пож1луйста, введите число')]").is(exist); //тест зеленый, а должен быть красный
         //$x("//text[contains(.,'Пож1луйста, введите число')]").isDisplayed(); //тест зеленый, а должен быть красный
