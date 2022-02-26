@@ -1,5 +1,6 @@
 package olgakos.github;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +12,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Configuration.browserSize;
 import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 
 @DisplayName("Класс с базовыми тестами сайта Юсуповский дворец")
@@ -73,12 +75,19 @@ public class yusupovPalaceSimpleTests {
         $("#fio").setValue("Example Name").pressEnter();
         $("#phone").setValue("Example Tel TEXT!").pressEnter();
         $("#type").setValue("цель мероприятия").pressEnter();
-        $("#guests").setValue("два").pressEnter(); //ожаидается ошибка: int=2
-        $("[type=submit]").click(); // отправить
+        $("#guests").setValue("2").pressEnter(); // int=2
+        $("[type=submit]").click(); // кнопка отправить
 
-        //Ожидаемый результат: появитcя ОКНО с текстом: "Пожалуйства, введите число"
-        $(byText("Пож1луйства, введиет число")).isDisplayed(); //тест зеленый, а должен быть красный
-        $x("//body[contains(.,'Пож1луйста, введите число')]").is(exist); //тест зеленый, а должен быть красный
-        $x("//text[contains(.,'Пож1луйста, введите число')]").isDisplayed(); //тест зеленый, а должен быть красный
+        //Ожидаемый результат:
+        //предупреждающее ОКНО с текстом "Заполните это поле / Пожалуйста, введите число"
+        //todo:
+        //Фактический результат: варианты1-4 не работают. Врианты 5-7 ошибочно проупскают неверный текст
+        $x("//text[contains(.,'Заполните это поле')]").should(Condition.exist); //1. не раб.
+        //$(withText("Заполните это поле")).should(Condition.exist); //2. не раб.
+        //$(withText("Пожалуйста, введите число")).should(Condition.exist); //3. не раб.
+        //$(withText("Пож1луйста, введите число")).should(Condition.exist); //4. не раб.
+        //$(byText("Пож1луйста, введите число")).isDisplayed(); //тест зеленый, а должен быть красный
+        //$x("//body[contains(.,'Пож1луйста, введите число')]").is(exist); //тест зеленый, а должен быть красный
+        //$x("//text[contains(.,'Пож1луйста, введите число')]").isDisplayed(); //тест зеленый, а должен быть красный
     }
 }
